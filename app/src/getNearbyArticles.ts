@@ -5,7 +5,6 @@ export const getNearbyArticles = (
   radiusMeters: number = 1000,
   maxResults: number = 100
 ): Promise<GeoseachResponse> => {
-  console.log(radiusMeters);
   const articles = fetch(
     `https://en.wikipedia.org/w/api.php?action=query&format=json&list=geosearch&formatversion=2&gscoord=${location.lat}%7C${location.lon}&gsradius=${radiusMeters}&gslimit=${maxResults}&origin=*`
   )

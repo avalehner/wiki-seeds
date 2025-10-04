@@ -4,15 +4,14 @@ import styles from "./page.module.css";
 import { getNearbyArticles } from "./src/getNearbyArticles";
 import { useEffect, useState } from "react";
 import { Geosearch, Location } from "./src/interfaces";
+import MapComponent from "./components/MapComponent";
 
 export default function Home() {
   const [nearbyArticles, setNearbyArticles] = useState<Geosearch[]>([]);
   const [currentLocation, setCurrentLocation] = useState<null | Location>(null);
 
   const updateNearbyArticles = async () => {
-    console.log("outer");
     if (currentLocation) {
-      console.log("here");
       const articles = await getNearbyArticles(currentLocation, 10000);
       setNearbyArticles(articles.query.geosearch);
     }
@@ -49,14 +48,40 @@ export default function Home() {
 
   return (
     <div>
-      <div>
-        {currentLocation?.lat}, {currentLocation?.lon}
+      <div style={{ padding: "20px" }}>
+        <h1>Wiki Seeds - Nearby Articles</h1>
+        <div>
+          <strong>Current Location:</strong> {currentLocation?.lat?.toFixed(4)},{" "}
+          {currentLocation?.lon?.toFixed(4)}
+        </div>
+        <div>
+          <strong>Found {nearbyArticles.length} nearby articles</strong>
+        </div>
       </div>
-      <div>
+
+      <MapComponent
+        currentLocation={currentLocation}
+        nearbyArticles={nearbyArticles}
+      />
+
+      <div style={{ padding: "20px" }}>
+        <h2>Article List</h2>
         {nearbyArticles &&
           nearbyArticles.map((article) => (
-            <div key={article.pageid}>
-              {article.title}, lat: {article.lat}, long: {article.lon}
+            <div
+              key={article.pageid}
+              style={{
+                marginBottom: "10px",
+                padding: "10px",
+                border: "1px solid #ccc",
+                borderRadius: "5px",
+              }}
+            >
+              <strong>{article.title}</strong>
+              <br />
+              <small>
+                lat: {article.lat.toFixed(4)}, long: {article.lon.toFixed(4)}
+              </small>
             </div>
           ))}
       </div>
