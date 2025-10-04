@@ -12,3 +12,8 @@ interface Query {
 export interface GeoseachResponse {
   query: Query;
 }
+
+export interface Location {
+  lat: number;
+  lon: number;
+}

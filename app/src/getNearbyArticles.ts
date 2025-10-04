@@ -1,8 +1,13 @@
-import { GeoseachResponse } from "./interfaces";
+import { GeoseachResponse, Location } from "./interfaces";
 
-export const getNearbyArticles = (): Promise<GeoseachResponse> => {
+export const getNearbyArticles = (
+  location: Location,
+  radiusMeters: number = 1000,
+  maxResults: number = 100
+): Promise<GeoseachResponse> => {
+  console.log(radiusMeters);
   const articles = fetch(
-    "https://en.wikipedia.org/w/api.php?action=query&format=json&list=geosearch&formatversion=2&gscoord=40.7009259%7C-73.9204175&gsradius=1000&origin=*"
+    `https://en.wikipedia.org/w/api.php?action=query&format=json&list=geosearch&formatversion=2&gscoord=${location.lat}%7C${location.lon}&gsradius=${radiusMeters}&gslimit=${maxResults}&origin=*`
   )
     .then((response) => response.json())
     .then((data) => data)
