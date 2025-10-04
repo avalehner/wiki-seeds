@@ -5,6 +5,11 @@ export interface Article {
   lon: number;
 }
 
+export interface SavedArticle {
+  article: Article;
+  timestampFound: Date;
+}
+
 interface Query {
   geosearch: Article[];
 }
@@ -20,3 +25,10 @@ export interface Location {
 
 export type SetSelectedArticleFn = (article: Article | null) => void;
 export type AddSavedArticle = (article: Article) => void;
+
+export enum Page {
+  MAP_VIEW,
+  SEED_SPAWN,
+  DETAILED_VIEW,
+  FLOWER_DEX,
+}

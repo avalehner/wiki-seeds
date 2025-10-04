@@ -2,16 +2,18 @@
 
 import { getNearbyArticles } from "./src/getNearbyArticles";
 import { useEffect, useState } from "react";
-import { Article, Location } from "./src/interfaces";
+import { Article, Location, Page, SavedArticle } from "./src/interfaces";
 import SeedSpawn from "./components/SeedSpawn";
 import MapPage from "./components/MapPage";
+import DetailedView from "./components/DetailedView";
 
 export default function Home() {
   const [nearbyArticles, setNearbyArticles] = useState<Article[]>([]);
   const [currentLocation, setCurrentLocation] = useState<null | Location>(null);
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   // TODO: Move this to DB
-  const [savedArticles, setSavedArticles] = useState<Article[]>([]);
+  const [savedArticles, setSavedArticles] = useState<SavedArticle[]>([]);
+  const [currentPage, setCurrentPage] = useState(Page.MAP_VIEW);
 
   const updateNearbyArticles = async () => {
     if (currentLocation) {
@@ -50,20 +52,44 @@ export default function Home() {
   }, [currentLocation]);
 
   const saveArticle = (article: Article) => {
-    setSavedArticles([...savedArticles, article]);
+    setSavedArticles([
+      ...savedArticles,
+      {
+        article: article,
+        timestampFound: new Date(),
+      },
+    ]);
+    setCurrentPage(Page.DETAILED_VIEW);
   };
 
-  return selectedArticle ? (
+  const setSelectedArticleCallback = (article: Article | null) => {
+    if (article) {
+      setCurrentPage(Page.SEED_SPAWN);
+    } else {
+      setCurrentPage(Page.MAP_VIEW);
+    }
+    setSelectedArticle(article);
+  };
+
+  const selectedSavedArticle = savedArticles.find(
+    (savedArticle) => savedArticle.article.pageid === selectedArticle?.pageid
+  );
+
+  return selectedArticle && currentPage === Page.SEED_SPAWN ? (
     <SeedSpawn
       article={selectedArticle}
-      setSelectedArticle={setSelectedArticle}
+      setSelectedArticle={setSelectedArticleCallback}
       addSavedArticle={saveArticle}
     />
-  ) : (
+  ) : currentPage === Page.MAP_VIEW ? (
     <MapPage
       currentLocation={currentLocation}
       nearbyArticles={nearbyArticles}
-      setSelectedArticle={setSelectedArticle}
+      setSelectedArticle={setSelectedArticleCallback}
     />
+  ) : currentPage === Page.DETAILED_VIEW && selectedSavedArticle ? (
+    <DetailedView savedArticle={selectedSavedArticle} />
+  ) : (
+    <div>Unknown page</div>
   );
 }
