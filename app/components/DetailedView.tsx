@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { SavedArticle, SummaryResponse } from "../src/interfaces";
 import { getArticleSummary } from "../src/dataFetching";
+import ToWikipediaPageButton from "./ToWikipediaPageButton";
 
 interface DetailedViewProps {
   savedArticle: SavedArticle;
@@ -9,10 +10,9 @@ interface DetailedViewProps {
 export default function DetailedView(props: DetailedViewProps) {
   const [summary, setSummary] = useState<null | SummaryResponse>(null);
 
-
   const fetchSummaryData = async () => {
     setSummary(await getArticleSummary(props.savedArticle.article.title));
-  }
+  };
 
   useEffect(() => {
     fetchSummaryData();
@@ -30,6 +30,11 @@ export default function DetailedView(props: DetailedViewProps) {
       </div>
       <div>Snippet</div>
       <div>{summary && summary.extract}</div>
+      <div>
+        <ToWikipediaPageButton
+          articleTitle={props.savedArticle.article.title}
+        />
+      </div>
     </div>
   );
 }
