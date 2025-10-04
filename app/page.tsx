@@ -10,8 +10,8 @@ export default function Home() {
   const [nearbyArticles, setNearbyArticles] = useState<Article[]>([]);
   const [currentLocation, setCurrentLocation] = useState<null | Location>(null);
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
-
-  console.log(selectedArticle);
+  // TODO: Move this to DB
+  const [savedArticles, setSavedArticles] = useState<Article[]>([]);
 
   const updateNearbyArticles = async () => {
     if (currentLocation) {
@@ -49,10 +49,15 @@ export default function Home() {
     updateNearbyArticles();
   }, [currentLocation]);
 
+  const saveArticle = (article: Article) => {
+    setSavedArticles([...savedArticles, article]);
+  };
+
   return selectedArticle ? (
     <SeedSpawn
       article={selectedArticle}
       setSelectedArticle={setSelectedArticle}
+      addSavedArticle={saveArticle}
     />
   ) : (
     <MapPage

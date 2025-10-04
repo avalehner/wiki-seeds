@@ -19,3 +19,4 @@ export interface Location {
 }
 
 export type SetSelectedArticleFn = (article: Article | null) => void;
+export type AddSavedArticle = (article: Article) => void;

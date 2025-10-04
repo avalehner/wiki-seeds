@@ -27,28 +27,6 @@ export default function MapPage(props: MapPageProps) {
         nearbyArticles={props.nearbyArticles}
         setSelectedArticle={props.setSelectedArticle}
       />
-
-      <div style={{ padding: "20px" }}>
-        <h2>Article List</h2>
-        {props.nearbyArticles &&
-          props.nearbyArticles.map((article) => (
-            <div
-              key={article.pageid}
-              style={{
-                marginBottom: "10px",
-                padding: "10px",
-                border: "1px solid #ccc",
-                borderRadius: "5px",
-              }}
-            >
-              <strong>{article.title}</strong>
-              <br />
-              <small>
-                lat: {article.lat.toFixed(4)}, long: {article.lon.toFixed(4)}
-              </small>
-            </div>
-          ))}
-      </div>
     </div>
   );
 }
