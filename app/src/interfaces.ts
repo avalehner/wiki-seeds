@@ -1,4 +1,4 @@
-export interface Geosearch {
+export interface Article {
   pageid: string;
   title: string;
   lat: number;
@@ -6,7 +6,7 @@ export interface Geosearch {
 }
 
 interface Query {
-  geosearch: Geosearch[];
+  geosearch: Article[];
 }
 
 export interface GeoseachResponse {

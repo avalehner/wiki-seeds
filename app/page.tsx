@@ -3,16 +3,16 @@
 import styles from "./page.module.css";
 import { getNearbyArticles } from "./src/getNearbyArticles";
 import { useEffect, useState } from "react";
-import { Geosearch, Location } from "./src/interfaces";
+import { Article, Location } from "./src/interfaces";
 import MapComponent from "./components/MapComponent";
 import SeedSpawn from "./components/SeedSpawn";
 
 export default function Home() {
-  const [nearbyArticles, setNearbyArticles] = useState<Geosearch[]>([]);
+  const [nearbyArticles, setNearbyArticles] = useState<Article[]>([]);
   const [currentLocation, setCurrentLocation] = useState<null | Location>(null);
-  const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null); 
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
-  console.log(selectedArticleId)
+  console.log(selectedArticle);
 
   const updateNearbyArticles = async () => {
     if (currentLocation) {
@@ -50,7 +50,12 @@ export default function Home() {
     updateNearbyArticles();
   }, [currentLocation]);
 
-  return selectedArticleId ? <SeedSpawn/> : (
+  return selectedArticle ? (
+    <SeedSpawn
+      article={selectedArticle}
+      setSelectedArticle={setSelectedArticle}
+    />
+  ) : (
     <div>
       <div style={{ padding: "20px" }}>
         <h1>Wiki Seeds - Nearby Articles</h1>
@@ -66,7 +71,7 @@ export default function Home() {
       <MapComponent
         currentLocation={currentLocation}
         nearbyArticles={nearbyArticles}
-        setSelectedArticleId={setSelectedArticleId}
+        setSelectedArticle={setSelectedArticle}
       />
 
       <div style={{ padding: "20px" }}>
