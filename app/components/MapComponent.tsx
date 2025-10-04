@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Article } from "../src/interfaces";
+import { Article, SetSelectedArticleFn } from "../src/interfaces";
 
 interface Location {
   lat: number;
@@ -11,7 +11,7 @@ interface Location {
 interface MapComponentProps {
   currentLocation: Location | null;
   nearbyArticles?: Article[];
-  setSelectedArticle: (article: Article | null) => void;
+  setSelectedArticle: SetSelectedArticleFn;
 }
 
 // Dynamically import the map component to avoid SSR issues
@@ -63,7 +63,7 @@ const DynamicMap = dynamic(
           <MapContainer
             center={position}
             zoom={13}
-            scrollWheelZoom={false}
+            scrollWheelZoom={true}
             style={{ height: "100%", width: "100%" }}
           >
             <TileLayer

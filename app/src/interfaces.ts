@@ -17,3 +17,5 @@ export interface Location {
   lat: number;
   lon: number;
 }
+
+export type SetSelectedArticleFn = (article: Article | null) => void;

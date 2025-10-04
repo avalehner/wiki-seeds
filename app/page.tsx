@@ -1,11 +1,10 @@
 "use client";
 
-import styles from "./page.module.css";
 import { getNearbyArticles } from "./src/getNearbyArticles";
 import { useEffect, useState } from "react";
 import { Article, Location } from "./src/interfaces";
-import MapComponent from "./components/MapComponent";
 import SeedSpawn from "./components/SeedSpawn";
+import MapPage from "./components/MapPage";
 
 export default function Home() {
   const [nearbyArticles, setNearbyArticles] = useState<Article[]>([]);
@@ -56,45 +55,10 @@ export default function Home() {
       setSelectedArticle={setSelectedArticle}
     />
   ) : (
-    <div>
-      <div style={{ padding: "20px" }}>
-        <h1>Wiki Seeds - Nearby Articles</h1>
-        <div>
-          <strong>Current Location:</strong> {currentLocation?.lat?.toFixed(4)},{" "}
-          {currentLocation?.lon?.toFixed(4)}
-        </div>
-        <div>
-          <strong>Found {nearbyArticles.length} nearby articles</strong>
-        </div>
-      </div>
-
-      <MapComponent
-        currentLocation={currentLocation}
-        nearbyArticles={nearbyArticles}
-        setSelectedArticle={setSelectedArticle}
-      />
-
-      <div style={{ padding: "20px" }}>
-        <h2>Article List</h2>
-        {nearbyArticles &&
-          nearbyArticles.map((article) => (
-            <div
-              key={article.pageid}
-              style={{
-                marginBottom: "10px",
-                padding: "10px",
-                border: "1px solid #ccc",
-                borderRadius: "5px",
-              }}
-            >
-              <strong>{article.title}</strong>
-              <br />
-              <small>
-                lat: {article.lat.toFixed(4)}, long: {article.lon.toFixed(4)}
-              </small>
-            </div>
-          ))}
-      </div>
-    </div>
+    <MapPage
+      currentLocation={currentLocation}
+      nearbyArticles={nearbyArticles}
+      setSelectedArticle={setSelectedArticle}
+    />
   );
 }
