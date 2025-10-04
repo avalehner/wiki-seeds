@@ -23,6 +23,10 @@ export interface Location {
   lon: number;
 }
 
+export interface SummaryResponse {
+  extract: string; 
+}
+
 export type SetSelectedArticleFn = (article: Article | null) => void;
 export type AddSavedArticle = (article: Article) => void;
 
@@ -32,3 +36,5 @@ export enum Page {
   DETAILED_VIEW,
   FLOWER_DEX,
 }
+
+

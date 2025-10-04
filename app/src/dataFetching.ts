@@ -1,4 +1,5 @@
-import { GeoseachResponse, Location } from "./interfaces";
+import { GeoseachResponse, Location, SummaryResponse } from "./interfaces";
+import { getSummaryUrlFromTitle } from "./util";
 
 export const getNearbyArticles = (
   location: Location,
@@ -16,3 +17,14 @@ export const getNearbyArticles = (
     });
   return articles;
 };
+
+export const getArticleSummary = (title: string): Promise<SummaryResponse> => {
+  const summary = fetch(getSummaryUrlFromTitle(title))
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((error) => {
+      console.error("Error fetching summary:", error);
+      return null;
+    });
+  return summary;
+}

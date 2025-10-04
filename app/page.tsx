@@ -1,6 +1,6 @@
 "use client";
 
-import { getNearbyArticles } from "./src/getNearbyArticles";
+import { getNearbyArticles } from "./src/dataFetching";
 import { useEffect, useState } from "react";
 import { Article, Location, Page, SavedArticle } from "./src/interfaces";
 import SeedSpawn from "./components/SeedSpawn";
