@@ -1,10 +1,17 @@
-import { Article, Location, SetSelectedArticleFn } from "../src/interfaces";
+import {
+  Article,
+  Location,
+  Page,
+  SetSelectedArticleFn,
+} from "../src/interfaces";
 import MapComponent from "./MapComponent";
+import PageToggle from "./PageToggle";
 
 interface MapPageProps {
   currentLocation: Location | null;
   nearbyArticles: Article[];
   setSelectedArticle: SetSelectedArticleFn;
+  goToFlowerDex: () => void;
 }
 
 export default function MapPage(props: MapPageProps) {
@@ -12,6 +19,11 @@ export default function MapPage(props: MapPageProps) {
     <div>
       <div style={{ padding: "20px" }}>
         <h1>Wiki Seeds - Nearby Articles</h1>
+        <PageToggle
+          goToFlowerDex={props.goToFlowerDex}
+          goToMap={() => {}}
+          currentPage={Page.MAP_VIEW}
+        />
         <div>
           <strong>Current Location:</strong>{" "}
           {props.currentLocation?.lat?.toFixed(4)},{" "}

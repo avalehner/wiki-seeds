@@ -96,8 +96,6 @@ const DynamicMap = dynamic(
                 </Popup>
               </Marker>
             )}
-
-            {/* Nearby articles markers */}
             {nearbyArticles?.map((article) => (
               <Marker
                 key={article.pageid}

@@ -5,6 +5,7 @@ import ToWikipediaPageButton from "./ToWikipediaPageButton";
 
 interface DetailedViewProps {
   savedArticle: SavedArticle;
+  goToFlowerDex: () => void;
 }
 
 export default function DetailedView(props: DetailedViewProps) {
@@ -35,6 +36,7 @@ export default function DetailedView(props: DetailedViewProps) {
           articleTitle={props.savedArticle.article.title}
         />
       </div>
+      <button onClick={props.goToFlowerDex}>Go to FlowerDex</button>
     </div>
   );
 }

@@ -1,1 +1,1 @@
-export const MAX_DISTANCE_METERS_TO_SAVE = 100;
+export const MAX_DISTANCE_METERS_TO_SAVE = 500;
