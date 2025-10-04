@@ -11,6 +11,7 @@ interface Location {
 interface MapComponentProps {
   currentLocation: Location | null;
   nearbyArticles?: Geosearch[];
+  setSelectedArticleId: (articleId: string | null) => void;
 }
 
 // Dynamically import the map component to avoid SSR issues
@@ -49,6 +50,7 @@ const DynamicMap = dynamic(
     const MapComponent = ({
       currentLocation,
       nearbyArticles,
+      setSelectedArticleId
     }: MapComponentProps) => {
       // Default to London if no location is provided
       const defaultPosition = [51.505, -0.09] as [number, number];
@@ -94,6 +96,7 @@ const DynamicMap = dynamic(
                   <strong>{article.title}</strong>
                   <br />
                   {article.lat.toFixed(4)}, {article.lon.toFixed(4)}
+                  <button onClick={() => setSelectedArticleId(article.title)}>Obtain Seed</button>
                 </Popup>
               </Marker>
             ))}
@@ -124,6 +127,7 @@ const DynamicMap = dynamic(
 export default function MapComponent({
   currentLocation,
   nearbyArticles,
+  setSelectedArticleId
 }: MapComponentProps) {
   return (
     <>
@@ -133,6 +137,7 @@ export default function MapComponent({
       <DynamicMap
         currentLocation={currentLocation}
         nearbyArticles={nearbyArticles}
+        setSelectedArticleId={setSelectedArticleId}
       />
     </>
   );

@@ -5,10 +5,14 @@ import { getNearbyArticles } from "./src/getNearbyArticles";
 import { useEffect, useState } from "react";
 import { Geosearch, Location } from "./src/interfaces";
 import MapComponent from "./components/MapComponent";
+import SeedSpawn from "./components/SeedSpawn";
 
 export default function Home() {
   const [nearbyArticles, setNearbyArticles] = useState<Geosearch[]>([]);
   const [currentLocation, setCurrentLocation] = useState<null | Location>(null);
+  const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null); 
+
+  console.log(selectedArticleId)
 
   const updateNearbyArticles = async () => {
     if (currentLocation) {
@@ -36,7 +40,7 @@ export default function Home() {
 
   useEffect(() => {
     update();
-    const interval = setInterval(update, 1000);
+    const interval = setInterval(update, 60000);
     return () => {
       clearInterval(interval);
     };
@@ -46,7 +50,7 @@ export default function Home() {
     updateNearbyArticles();
   }, [currentLocation]);
 
-  return (
+  return selectedArticleId ? <SeedSpawn/> : (
     <div>
       <div style={{ padding: "20px" }}>
         <h1>Wiki Seeds - Nearby Articles</h1>
@@ -62,6 +66,7 @@ export default function Home() {
       <MapComponent
         currentLocation={currentLocation}
         nearbyArticles={nearbyArticles}
+        setSelectedArticleId={setSelectedArticleId}
       />
 
       <div style={{ padding: "20px" }}>
