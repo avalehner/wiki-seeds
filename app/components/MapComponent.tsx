@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { Article, SetSelectedArticleFn } from "../src/interfaces";
+import { getDistance } from "geolib";
+import { MAX_DISTANCE_METERS_TO_SAVE } from "../src/constants";
 
 interface Location {
   lat: number;
@@ -13,6 +15,15 @@ interface MapComponentProps {
   nearbyArticles?: Article[];
   setSelectedArticle: SetSelectedArticleFn;
 }
+
+const canShowObtainSeedButton = (
+  currentPosition: Location,
+  seedPosition: Location
+) => {
+  return (
+    getDistance(currentPosition, seedPosition) < MAX_DISTANCE_METERS_TO_SAVE
+  );
+};
 
 // Dynamically import the map component to avoid SSR issues
 const DynamicMap = dynamic(
@@ -96,9 +107,15 @@ const DynamicMap = dynamic(
                   <strong>{article.title}</strong>
                   <br />
                   {article.lat.toFixed(4)}, {article.lon.toFixed(4)}
-                  <button onClick={() => setSelectedArticle(article)}>
-                    Obtain Seed
-                  </button>
+                  {currentLocation &&
+                    canShowObtainSeedButton(currentLocation, {
+                      lat: article.lat,
+                      lon: article.lon,
+                    }) && (
+                      <button onClick={() => setSelectedArticle(article)}>
+                        Obtain Seed
+                      </button>
+                    )}
                 </Popup>
               </Marker>
             ))}
