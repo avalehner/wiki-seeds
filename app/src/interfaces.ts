@@ -33,7 +33,8 @@ export interface Plant {
 }
 
 export interface PlantColor {
-  themeColorHex: string;
+  backgroundColor: string;
+  foregroundColor: string;
 }
 
 export type SetSelectedArticleFn = (article: Article | null) => void;
