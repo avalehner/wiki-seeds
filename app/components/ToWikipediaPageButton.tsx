@@ -1,4 +1,5 @@
 import { getWikipediaUrlFromTitle } from "../src/util";
+import styles from "./../styles/ToWikipediaPageButton.module.css";
 
 interface ToWikipediaPageButtonProps {
   articleTitle: string;
@@ -13,7 +14,7 @@ export default function ToWikipediaPageButton(
       target="_blank"
       rel="noreferrer"
     >
-      <div>Open on Wikipedia</div>
+      <div className={styles.openOnWikiBtn}>open on wikipedia</div>
     </a>
   );
 }

@@ -1,0 +1,44 @@
+.detailedViewContainer {
+  font-style: italic; 
+}
+
+.savedArticleTitleContainer {
+  text-align: center; 
+  font-size: 2em; 
+  margin-bottom: 20px; 
+}
+
+.detailedViewLabel {
+  font-size: 1.1em; 
+  margin: 0 20px; 
+  padding: 10px 0;
+}
+
+.locationCoords {
+  margin-left: 35px
+}
+
+.snippetContainer {
+  margin: 0 20px; 
+}
+
+.locationCoords, 
+.dateCollected, 
+.snippetContainer {
+  font-family: 'Courier New', Courier, monospace;
+  font-style: normal; 
+}
+
+.detailedViewLabel,
+.locationCoords, 
+.locationCoordContainer,
+.dateCollected {
+  display: inline; 
+}
+
+.snippetAndOpenWikiContainer {
+  margin-right: 40px; 
+  display: flex; 
+  justify-content: space-between;
+  align-items: baseline;
+}

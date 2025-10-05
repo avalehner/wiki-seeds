@@ -1,7 +1,29 @@
 .seedSpawnOuterContainer {
-  background-color: E9E1CA;
+  background-color: var(--background); 
+  font-family: var(--linux-libertine-font);
+  text-align: center; 
+  font-style: italic; 
 }
 
 .seedSpawnTitleContainer {
-  font-family: var(--linux-libertine);
+  font-size: 2.5em;
+  text-align: center; 
+  margin: 70px 0 50px; 
+}
+
+.tapToCollectContainer {
+  font-size: 1.2em; 
+}
+
+.saveSeedBtn {
+  margin: 220px 0; 
+}
+
+.openOnWikiBtnContainer {
+  display: flex; 
+  justify-content: center;
+}
+
+.backToMapBtn {
+  margin-top: 100px; 
 }

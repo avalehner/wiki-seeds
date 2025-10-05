@@ -16,14 +16,17 @@ export interface SeedSpawnProps {
 export default function SeedSpawn(props: SeedSpawnProps) {
   return (
     <div className={styles.seedSpawnOuterContainer}>
-      <div className={styles.seedSpawnTitleContainer}>{props.article.title}</div>
-      <button onClick={() => props.setSelectedArticle(null)}>
-        back to map
+      <div className={styles.seedSpawnTitleContainer}>Seed found!</div>
+      <div className={styles.tapToCollectContainer}>tap to collect</div>
+      <button className={styles.saveSeedBtn} onClick={() => props.addSavedArticle(props.article)}>
+        save seed 
       </button>
-      <button onClick={() => props.addSavedArticle(props.article)}>
-        save article
+      <div className={styles.openOnWikiBtnContainer}>
+        <ToWikipediaPageButton articleTitle={props.article.title} />
+      </div>
+      <button className={styles.backToMapBtn} onClick={() => props.setSelectedArticle(null)}>
+        (x)
       </button>
-      <ToWikipediaPageButton articleTitle={props.article.title} />
     </div>
   );
 }

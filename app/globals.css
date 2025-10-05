@@ -110,6 +110,7 @@ button {
   background: none;
   font-size: inherit;
   font-family: inherit;
+  font-style: inherit; 
   border: none;
   outline: none;
   cursor: pointer;
