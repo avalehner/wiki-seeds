@@ -5,6 +5,7 @@ import { Article, SetSelectedArticleFn } from "../src/interfaces";
 import { getDistance } from "geolib";
 import { MAX_DISTANCE_METERS_TO_SAVE } from "../src/constants";
 import styles from "./../styles/MapComponent.module.css";
+import { articleToThemeColor, hexToRgb } from "../src/util";
 
 interface Location {
   lat: number;
@@ -38,6 +39,31 @@ const DynamicMap = dynamic(
       useMap,
     } = require("react-leaflet");
     const { useEffect } = require("react");
+    const L = require("leaflet");
+
+    // Helpers to build custom DivIcons (simple styled divs)
+    const buildDivIcon = (html: string, className: string = "") =>
+      L.divIcon({
+        html,
+        className, // keep class empty to avoid Leaflet default styles
+        iconSize: [36, 36],
+        iconAnchor: [18, 36],
+        popupAnchor: [0, -36],
+      });
+
+    const currentLocationIcon = buildDivIcon(
+      '<div class="customMarker currentMarker"></div>'
+    );
+
+    const articleIcon = (article: Article) => {
+      const articleColor = articleToThemeColor(article);
+      const backgroundColorRgb = hexToRgb(articleColor.backgroundColor);
+      const rgbString = `${backgroundColorRgb?.r}, ${backgroundColorRgb?.g}, ${backgroundColorRgb?.b}`;
+      const backgroundStyle = `radial-gradient(circle at 50% 50%, rgba(${rgbString}, 1.0) 0%, rgba(${rgbString}, 0.6) 30%, rgba(0, 0, 0, 0.0) 50%)`;
+      return buildDivIcon(
+        `<div class="customMarker articleMarker" style="background: ${backgroundStyle};"></div>`
+      );
+    };
 
     // Component to handle map center updates
     const MapCenterUpdater = ({
@@ -88,7 +114,10 @@ const DynamicMap = dynamic(
 
             {/* Current location marker */}
             {currentLocation && (
-              <Marker position={[currentLocation.lat, currentLocation.lon]}>
+              <Marker
+                position={[currentLocation.lat, currentLocation.lon]}
+                icon={currentLocationIcon}
+              >
                 <Popup>
                   <strong>Your Location</strong>
                   <br />
@@ -101,6 +130,7 @@ const DynamicMap = dynamic(
               <Marker
                 key={article.pageid}
                 position={[article.lat, article.lon]}
+                icon={articleIcon(article)}
               >
                 <Popup>
                   <strong>{article.title}</strong>
