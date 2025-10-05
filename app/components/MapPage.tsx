@@ -7,6 +7,7 @@ import {
 import MapComponent from "./MapComponent";
 import PageToggle from "./PageToggle";
 import styles from "./../styles/MapPage.module.css";
+import Image from "next/image";
 
 interface MapPageProps {
   currentLocation: Location | null;
@@ -21,7 +22,14 @@ export default function MapPage(props: MapPageProps) {
       <div className={styles.mapTitleContainer}>
         <div className={styles.mapTitleInnerContainer}>
           <div className={styles.titleContainer}>WikiGarden</div>
-          <div className={styles.logoContainer}>logo goes here</div>
+          <div className={styles.logoContainer}>
+            <Image
+              src="/images/seed-icon.svg"
+              alt="A seed"
+              width="25"
+              height="25"
+            />
+          </div>
         </div>
       </div>
       <div className={styles.mapOuterContainer}>
