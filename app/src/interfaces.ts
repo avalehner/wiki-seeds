@@ -35,6 +35,7 @@ export interface Plant {
 export interface PlantColor {
   backgroundColor: string;
   foregroundColor: string;
+  softBackgroundColor: string;
 }
 
 export type SetSelectedArticleFn = (article: Article | null) => void;

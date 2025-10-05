@@ -57,7 +57,7 @@ a {
 /* Leaflet popup custom styles */
 .leaflet-popup-content-wrapper.wikiPopup,
 .wikiPopup .leaflet-popup-content-wrapper {
-  background: rgba(248, 244, 235, 0.95);
+  background-color: var(--popup-bg, rgba(248, 244, 235, 0.95));
   border: 1px solid var(--foreground);
   border-radius: 10px;
 }
@@ -73,7 +73,7 @@ a {
 
 .leaflet-popup-tip.wikiPopup,
 .wikiPopup .leaflet-popup-tip {
-  background: rgba(248, 244, 235, 0.95);
+  background: var(--popup-bg, rgba(248, 244, 235, 0.95));
   border: 1px solid var(--foreground);
 }
 
@@ -95,7 +95,7 @@ a {
   font-family: "Courier New";
   text-transform: uppercase;
   font-style: normal;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 /* Nudge the tip up so it overlaps the wrapper border and removes the seam */

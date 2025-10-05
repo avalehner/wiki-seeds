@@ -40,6 +40,7 @@ const DynamicMap = dynamic(
     } = require("react-leaflet");
     const { useEffect } = require("react");
     const L = require("leaflet");
+    const { articleToThemeColor, hexToRgb } = require("../src/util");
 
     // Helpers to build custom DivIcons (simple styled divs)
     const buildDivIcon = (html: string, className: string = "") =>
@@ -59,7 +60,7 @@ const DynamicMap = dynamic(
       const articleColor = articleToThemeColor(article);
       const backgroundColorRgb = hexToRgb(articleColor.backgroundColor);
       const rgbString = `${backgroundColorRgb?.r}, ${backgroundColorRgb?.g}, ${backgroundColorRgb?.b}`;
-      const backgroundStyle = `radial-gradient(circle at 50% 50%, rgba(${rgbString}, 1.0) 0%, rgba(${rgbString}, 0.6) 30%, rgba(0, 0, 0, 0.0) 50%)`;
+      const backgroundStyle = `radial-gradient(circle at 50% 50%, rgba(${rgbString}, 1.0) 0%, rgba(${rgbString}, 0.7) 30%, rgba(0, 0, 0, 0.0) 50%)`;
       return buildDivIcon(
         `<div class="customMarker articleMarker" style="background: ${backgroundStyle};"></div>`
       );
@@ -118,7 +119,7 @@ const DynamicMap = dynamic(
                 position={[currentLocation.lat, currentLocation.lon]}
                 icon={currentLocationIcon}
               >
-                <Popup className="wikiPopup">
+                <Popup className="wikiPopup" closeButton={false}>
                   <strong>Your Location</strong>
                   <br />
                   {currentLocation.lat.toFixed(4)},{" "}
@@ -133,13 +134,26 @@ const DynamicMap = dynamic(
                   lat: article.lat,
                   lon: article.lon,
                 });
+              const theme = articleToThemeColor(article);
               return (
                 <Marker
                   key={article.pageid}
                   position={[article.lat, article.lon]}
                   icon={articleIcon(article)}
+                  eventHandlers={{
+                    popupopen: (e: any) => {
+                      const popupEl = e?.popup?.getElement?.();
+                      if (popupEl) {
+                        popupEl.style.setProperty(
+                          "--popup-bg",
+                          theme.softBackgroundColor
+                        );
+                        popupEl.style.setProperty("--popup-border", "#222");
+                      }
+                    },
+                  }}
                 >
-                  <Popup className="wikiPopup">
+                  <Popup className="wikiPopup" closeButton={false}>
                     <button
                       className="popupButton"
                       disabled={!canObtain}
