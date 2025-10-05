@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { SavedArticle, SummaryResponse } from "../src/interfaces";
 import { getArticleSummary } from "../src/dataFetching";
-import ToWikipediaPageButton from "./ToWikipediaPageButton";
-import styles from "./../styles/DetailedView.module.css"; 
-import { getWikipediaUrlFromTitle } from "../src/util";
+import styles from "./../styles/DetailedView.module.css";
+import {
+  articleToThemeColor,
+  getWikipediaUrlFromTitle,
+  hexToRgb,
+} from "../src/util";
 import { getFlowerImageFromArticle } from "../src/util";
 import Image from "next/image";
-
 
 interface DetailedViewProps {
   savedArticle: SavedArticle;
@@ -15,6 +17,12 @@ interface DetailedViewProps {
 
 export default function DetailedView(props: DetailedViewProps) {
   const [summary, setSummary] = useState<null | SummaryResponse>(null);
+  const backgroundColor = articleToThemeColor(
+    props.savedArticle.article
+  ).backgroundColor;
+  const backgroundColorRgb = hexToRgb(backgroundColor);
+  const rgbString = `${backgroundColorRgb?.r}, ${backgroundColorRgb?.g}, ${backgroundColorRgb?.b}`;
+  const backgroundStyle = `radial-gradient(circle at 50% 50%, rgba(${rgbString}, 1.0) 0%, rgba(${rgbString}, 0.7) 30%, rgba(0, 0, 0, 0.0) 50%)`;
 
   const fetchSummaryData = async () => {
     setSummary(await getArticleSummary(props.savedArticle.article.title));
@@ -27,7 +35,13 @@ export default function DetailedView(props: DetailedViewProps) {
   return (
     <div className={styles.detailedViewContainer}>
       <div className={styles.articleImageContainer}>
-         <Image
+        <div className={styles.coloredGlowContainer}>
+          <div
+            className={styles.coloredGlow}
+            style={{ background: backgroundStyle }}
+          />
+        </div>
+        <Image
           src={getFlowerImageFromArticle(props.savedArticle.article)}
           alt="A flower"
           width="100"
@@ -35,18 +49,21 @@ export default function DetailedView(props: DetailedViewProps) {
           className={styles.articleImage}
         />
       </div>
-      <div className={styles.savedArticleTitleContainer}>{props.savedArticle.article.title}</div>
+      <div className={styles.savedArticleTitleContainer}>
+        {props.savedArticle.article.title}
+      </div>
       <div className={styles.articleDetailsContainer}>
         <div className={styles.locationContainer}>
           <div className={styles.detailedViewLabel}>Location</div>
           <div className={styles.locationCoords}>
-          {props.savedArticle.article.lat},{" "}
-          {props.savedArticle.article.lon} 
+            {props.savedArticle.article.lat}, {props.savedArticle.article.lon}
           </div>
         </div>
         <div className={styles.dateCollectedContainer}>
           <div className={styles.detailedViewLabel}>Date collected</div>
-          <div className={styles.dateCollected}>{props.savedArticle.timestampFound.toLocaleDateString()}</div>
+          <div className={styles.dateCollected}>
+            {props.savedArticle.timestampFound.toLocaleDateString()}
+          </div>
         </div>
         <div className={styles.snippetContainer}>
           <div className={styles.snippetAndOpenWikiContainer}>
@@ -54,26 +71,30 @@ export default function DetailedView(props: DetailedViewProps) {
             {/* open wikipedia btn */}
             <div>
               <a
-              href={getWikipediaUrlFromTitle(props.savedArticle.article.title)}
-              target="_blank"
-              rel="noreferrer"
+                href={getWikipediaUrlFromTitle(
+                  props.savedArticle.article.title
+                )}
+                target="_blank"
+                rel="noreferrer"
               >
                 <div className={styles.openOnWikiBtn}>open on wikipedia</div>
               </a>
             </div>
           </div>
-          <div className={styles.summaryContainer}>{summary && summary.extract}</div>
+          <div className={styles.summaryContainer}>
+            {summary && summary.extract}
+          </div>
         </div>
         <div className={styles.closeBtnContainer}>
           <button onClick={props.goToFlowerDex}>
             <Image
-            src="/images/close-button.svg"
-            alt="Close"
-            width="25"
-            height="25"
-            className={styles.closeButtonImage}
+              src="/images/close-button.svg"
+              alt="Close"
+              width="25"
+              height="25"
+              className={styles.closeButtonImage}
             />
-          <div>close</div>
+            <div>close</div>
           </button>
         </div>
       </div>
