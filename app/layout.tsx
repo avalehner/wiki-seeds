@@ -1,17 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const linuxLibertineFont = localFont({
   src: [
@@ -45,7 +34,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="WikiGarden" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${linuxLibertineFont.variable} ${linuxLibertineFont.className}`}
+        className={`${linuxLibertineFont.variable} ${linuxLibertineFont.className}`}
       >
         {children}
       </body>
