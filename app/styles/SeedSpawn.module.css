@@ -31,6 +31,7 @@
   margin-top: 30px;
   width: 25%;
   height: unset;
+  z-index: 2;
 }
 
 .openOnWikiBtnContainer {
@@ -51,4 +52,19 @@
 
 .backToMapBtn {
   flex-direction: column;
+}
+
+.glitterImage {
+  position: absolute;
+  width: 70%;
+  height: unset;
+  transform: translateY(-25%);
+  z-index: 1;
+}
+
+.coloredGlow {
+  width: 150%;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  transform: translateY(-35%);
 }

@@ -6,7 +6,11 @@ import {
 import ToWikipediaPageButton from "./ToWikipediaPageButton";
 import styles from "./../styles/SeedSpawn.module.css";
 import Image from "next/image";
-import { getSeedImageFromArticle } from "../src/util";
+import {
+  articleToThemeColor,
+  getSeedImageFromArticle,
+  hexToRgb,
+} from "../src/util";
 
 export interface SeedSpawnProps {
   article: Article;
@@ -15,6 +19,10 @@ export interface SeedSpawnProps {
 }
 
 export default function SeedSpawn(props: SeedSpawnProps) {
+  const backgroundColor = articleToThemeColor(props.article).backgroundColor;
+  const backgroundColorRgb = hexToRgb(backgroundColor);
+  const rgbString = `${backgroundColorRgb?.r}, ${backgroundColorRgb?.g}, ${backgroundColorRgb?.b}`;
+  const backgroundStyle = `radial-gradient(circle at 50% 50%, rgba(${rgbString}, 1.0) 0%, rgba(${rgbString}, 0.7) 30%, rgba(0, 0, 0, 0.0) 50%)`;
   return (
     <div className={styles.seedSpawnOuterContainer}>
       <div className={styles.seedSpawnTitleContainer}>Seed found!</div>
@@ -23,6 +31,17 @@ export default function SeedSpawn(props: SeedSpawnProps) {
         className={styles.saveSeedBtn}
         onClick={() => props.addSavedArticle(props.article)}
       >
+        <div
+          className={styles.coloredGlow}
+          style={{ background: backgroundStyle }}
+        />
+        <Image
+          src={"/images/glitter.png"}
+          alt="Glitter texture"
+          width="500"
+          height="500"
+          className={styles.glitterImage}
+        />
         <Image
           src={getSeedImageFromArticle(props.article)}
           alt="A seed"
