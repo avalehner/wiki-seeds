@@ -53,6 +53,10 @@ export default function Home() {
   }, [currentLocation]);
 
   const saveArticle = (article: Article) => {
+    const audio = new Audio("/audio/Seed_Found.wav");
+    audio.play().catch((error) => {
+      console.log("Audio playback failed:", error);
+    });
     setSavedArticles([
       ...savedArticles,
       {
@@ -65,6 +69,11 @@ export default function Home() {
 
   const setSelectedArticleCallback = (article: Article | null) => {
     if (article) {
+      // Play audio when an article is selected
+      const audio = new Audio("/audio/Seed_Radar.wav");
+      audio.play().catch((error) => {
+        console.log("Audio playback failed:", error);
+      });
       setCurrentPage(Page.SEED_SPAWN);
     } else {
       setCurrentPage(Page.MAP_VIEW);
