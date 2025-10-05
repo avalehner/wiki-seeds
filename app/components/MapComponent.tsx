@@ -118,7 +118,7 @@ const DynamicMap = dynamic(
                 position={[currentLocation.lat, currentLocation.lon]}
                 icon={currentLocationIcon}
               >
-                <Popup>
+                <Popup className="wikiPopup">
                   <strong>Your Location</strong>
                   <br />
                   {currentLocation.lat.toFixed(4)},{" "}
@@ -126,28 +126,34 @@ const DynamicMap = dynamic(
                 </Popup>
               </Marker>
             )}
-            {nearbyArticles?.map((article) => (
-              <Marker
-                key={article.pageid}
-                position={[article.lat, article.lon]}
-                icon={articleIcon(article)}
-              >
-                <Popup>
-                  <strong>{article.title}</strong>
-                  <br />
-                  {article.lat.toFixed(4)}, {article.lon.toFixed(4)}
-                  {currentLocation &&
-                    canShowObtainSeedButton(currentLocation, {
-                      lat: article.lat,
-                      lon: article.lon,
-                    }) && (
-                      <button onClick={() => setSelectedArticle(article)}>
-                        Obtain Seed
-                      </button>
-                    )}
-                </Popup>
-              </Marker>
-            ))}
+            {nearbyArticles?.map((article) => {
+              const canObtain =
+                currentLocation &&
+                canShowObtainSeedButton(currentLocation, {
+                  lat: article.lat,
+                  lon: article.lon,
+                });
+              return (
+                <Marker
+                  key={article.pageid}
+                  position={[article.lat, article.lon]}
+                  icon={articleIcon(article)}
+                >
+                  <Popup className="wikiPopup">
+                    <button
+                      className="popupButton"
+                      disabled={!canObtain}
+                      onClick={() => setSelectedArticle(article)}
+                    >
+                      <div className="articleTitle">{article.title}</div>
+                      {canObtain && (
+                        <div className="collectSeedContainer">Collect seed</div>
+                      )}
+                    </button>
+                  </Popup>
+                </Marker>
+              );
+            })}
           </MapContainer>
         </div>
       );

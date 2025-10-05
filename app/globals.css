@@ -2,6 +2,9 @@
   --background: #E9E1CA;
   --foreground: #222222;
   --accent: #E6F074;
+  --wiki-serif: "Linux Libertine", monospace, "Times New Roman", Georgia, serif;
+  /* next/font/local exposes this variable from layout */
+  --font-linux-libertine: var(--linux-libertine-font);
 }
 
 html,
@@ -48,12 +51,57 @@ a {
   width: 50px;
   height: 50px;
   /* Soft radial glow that fades to transparent at the edges */
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 127, 80, 1.0) 0%,
-    rgba(255, 127, 80, 0.8) 25%,
-    rgba(255, 127, 80, 0.0) 50%
-  );
+  background: radial-gradient(circle at 50% 50%, rgba(255, 127, 80, 1.0) 0%, rgba(255, 127, 80, 0.8) 25%, rgba(255, 127, 80, 0.0) 50%);
+}
+
+/* Leaflet popup custom styles */
+.leaflet-popup-content-wrapper.wikiPopup,
+.wikiPopup .leaflet-popup-content-wrapper {
+  background: rgba(248, 244, 235, 0.95);
+  border: 1px solid var(--foreground);
+  border-radius: 10px;
+}
+
+.leaflet-popup-content.wikiPopup,
+.wikiPopup .leaflet-popup-content {
+  font-size: 16px;
+  font-family: var(--linux-libertine-font);
+  line-height: 16px;
+  font-style: italic;
+  margin: 5px;
+}
+
+.leaflet-popup-tip.wikiPopup,
+.wikiPopup .leaflet-popup-tip {
+  background: rgba(248, 244, 235, 0.95);
+  border: 1px solid var(--foreground);
+}
+
+.popupButton {
+  padding: 6px 10px 6px 8px;
+  text-align: left;
+}
+
+.popupButton:disabled {
+  cursor: initial;
+}
+
+.collectSeedContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  font-family: "Courier New";
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 0.8rem;
+}
+
+/* Nudge the tip up so it overlaps the wrapper border and removes the seam */
+.leaflet-popup-tip-container.wikiPopup,
+.wikiPopup .leaflet-popup-tip-container {
+  margin-top: -1px; /* match wrapper/tip border width */
 }
 
 button {

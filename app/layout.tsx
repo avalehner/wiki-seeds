@@ -45,7 +45,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="WikiGarden" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${linuxLibertineFont.className}`}
+        className={`${geistSans.variable} ${geistMono.variable} ${linuxLibertineFont.variable} ${linuxLibertineFont.className}`}
       >
         {children}
       </body>
