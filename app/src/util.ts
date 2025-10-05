@@ -35,3 +35,15 @@ export const hexToRgb = (hex: string) => {
       }
     : null;
 };
+
+export const getFlowerImageFromArticle = (article: Article) => {
+  const plant = articleToPlant(article);
+  const baseName = plant.plantBaseName;
+  return `/images/plants/flowers/flower-${baseName}.png`;
+};
+
+export const getSeedImageFromArticle = (article: Article) => {
+  const plant = articleToPlant(article);
+  const baseName = plant.plantBaseName;
+  return `/images/plants/seeds/seed-${baseName}.png`;
+};

@@ -3,12 +3,15 @@
   font-family: var(--linux-libertine-font);
   text-align: center; 
   font-style: italic; 
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 
 .seedSpawnTitleContainer {
   font-size: 2.5em;
   text-align: center; 
-  margin: 70px 0 50px; 
+  padding: 70px 0 50px; 
 }
 
 .tapToCollectContainer {
@@ -16,14 +19,36 @@
 }
 
 .saveSeedBtn {
-  margin: 220px 0; 
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.seedImage {
+  margin-top: 30px;
+  width: 25%;
+  height: unset;
 }
 
 .openOnWikiBtnContainer {
   display: flex; 
   justify-content: center;
+  position: absolute;
+  bottom: 150px;
+  width: 100%;
+}
+
+.closeButtonContainer {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  display: flex; 
+  justify-content: center;
 }
 
 .backToMapBtn {
-  margin-top: 100px; 
+  flex-direction: column;
 }
