@@ -24,7 +24,7 @@ export default function MapPage(props: MapPageProps) {
           <div className={styles.titleContainer}>WikiGarden</div>
           <div className={styles.logoContainer}>
             <Image
-              src="/images/seed-icon.svg"
+              src="/images/map-page/seed-icon.svg"
               alt="A seed"
               width="25"
               height="25"

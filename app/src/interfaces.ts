@@ -24,7 +24,16 @@ export interface Location {
 }
 
 export interface SummaryResponse {
-  extract: string; 
+  extract: string;
+}
+
+export interface Plant {
+  plantBaseName: string;
+  color: PlantColor;
+}
+
+export interface PlantColor {
+  themeColorHex: string;
 }
 
 export type SetSelectedArticleFn = (article: Article | null) => void;
@@ -36,5 +45,3 @@ export enum Page {
   DETAILED_VIEW,
   FLOWER_DEX,
 }
-
-

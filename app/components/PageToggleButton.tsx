@@ -10,7 +10,7 @@ interface PageToggleButtonProps {
 }
 
 export default function PageToggleButton(props: PageToggleButtonProps) {
-  const imageFilename = `/images/${props.baseImageName}-${
+  const imageFilename = `/images/toggle/${props.baseImageName}-${
     props.selected ? "dark" : "light"
   }.svg`;
 
