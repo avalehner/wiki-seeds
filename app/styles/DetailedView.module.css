@@ -1,30 +1,41 @@
 .detailedViewContainer {
   font-style: italic; 
+  padding: 2%; 
+}
+
+.articleImageContainer {
+  margin-top: 15%; 
+  text-align: center; 
+}
+
+.articleImage {
+  width: 48%;
+  height: unset; 
 }
 
 .savedArticleTitleContainer {
   text-align: center; 
-  font-size: 2em; 
-  margin-bottom: 40px; 
+  font-size: 2.2em; 
+  margin: 25px 0 40px 0; 
 }
 
 .detailedViewLabel {
-  font-size: 1.1em; 
+  font-size: 1.4em; 
   margin: 0 20px; 
 }
 
 .locationCoords {
-  margin-left: 35px
+  margin-left: 45px
 }
 
 .articleDetailsContainer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .summaryContainer {
-  margin: 0 20px; 
+  margin: 10px 20px; 
 }
 
 .locationCoords, 
@@ -32,6 +43,7 @@
 .summaryContainer {
   font-family: 'Courier New', Courier, monospace;
   font-style: normal;
+  font-size: 1.2em; 
 
 }
 
@@ -57,10 +69,10 @@
   width: fit-content;  
 }
 
-.goToFlowerDexBtnContainer {
+.closeBtnContainer {
   display: flex; 
   justify-content: center; 
-  margin-top: 10px; 
+  margin-top: 10%; 
 }
 
 
