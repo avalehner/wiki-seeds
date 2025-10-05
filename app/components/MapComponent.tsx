@@ -5,12 +5,13 @@ import { Article, SetSelectedArticleFn } from "../src/interfaces";
 import { getDistance } from "geolib";
 import { MAX_DISTANCE_METERS_TO_SAVE } from "../src/constants";
 import styles from "./../styles/MapComponent.module.css";
-import { articleToThemeColor, hexToRgb } from "../src/util";
 
 interface Location {
   lat: number;
   lon: number;
 }
+
+const stadiaApiKey = process.env.NEXT_PUBLIC_STADIA_API_KEY || "";
 
 interface MapComponentProps {
   currentLocation: Location | null;
@@ -107,7 +108,7 @@ const DynamicMap = dynamic(
           >
             <TileLayer
               attribution='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
-              url="https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg"
+              url={`https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg?api_key=${stadiaApiKey}`}
             />
 
             {/* Component to update map center when location changes */}
