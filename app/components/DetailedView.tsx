@@ -56,7 +56,8 @@ export default function DetailedView(props: DetailedViewProps) {
         <div className={styles.locationContainer}>
           <div className={styles.detailedViewLabel}>Location</div>
           <div className={styles.locationCoords}>
-            {props.savedArticle.article.lat}, {props.savedArticle.article.lon}
+            {parseFloat(props.savedArticle.article.lat.toFixed(3))},{" "}
+            {parseFloat(props.savedArticle.article.lon.toFixed(3))}
           </div>
         </div>
         <div className={styles.dateCollectedContainer}>
