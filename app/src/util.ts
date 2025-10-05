@@ -26,7 +26,7 @@ export const articleToThemeColor = (article: Article) =>
   articleToPlant(article).color;
 
 export const hexToRgb = (hex: string) => {
-  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
     ? {
         r: parseInt(result[1], 16),
