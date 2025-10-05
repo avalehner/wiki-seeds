@@ -6,6 +6,7 @@ import {
 } from "../src/interfaces";
 import MapComponent from "./MapComponent";
 import PageToggle from "./PageToggle";
+import styles from "./../styles/MapPage.module.css";
 
 interface MapPageProps {
   currentLocation: Location | null;
@@ -16,29 +17,21 @@ interface MapPageProps {
 
 export default function MapPage(props: MapPageProps) {
   return (
-    <div>
-      <div style={{ padding: "20px" }}>
-        <h1>Wiki Seeds - Nearby Articles</h1>
-        <PageToggle
-          goToFlowerDex={props.goToFlowerDex}
-          goToMap={() => {}}
-          currentPage={Page.MAP_VIEW}
-        />
-        <div>
-          <strong>Current Location:</strong>{" "}
-          {props.currentLocation?.lat?.toFixed(4)},{" "}
-          {props.currentLocation?.lon?.toFixed(4)}
-        </div>
-        <div>
-          <strong>Found {props.nearbyArticles.length} nearby articles</strong>
+    <div className={styles.mapPageOuterContainer}>
+      <PageToggle
+        goToFlowerDex={props.goToFlowerDex}
+        goToMap={() => {}}
+        currentPage={Page.MAP_VIEW}
+      />
+      <div className={styles.mapContainer}>
+        <div className={styles.mapInnerContainer}>
+          <MapComponent
+            currentLocation={props.currentLocation}
+            nearbyArticles={props.nearbyArticles}
+            setSelectedArticle={props.setSelectedArticle}
+          />
         </div>
       </div>
-
-      <MapComponent
-        currentLocation={props.currentLocation}
-        nearbyArticles={props.nearbyArticles}
-        setSelectedArticle={props.setSelectedArticle}
-      />
     </div>
   );
 }
