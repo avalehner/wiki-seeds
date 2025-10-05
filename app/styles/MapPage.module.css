@@ -11,9 +11,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .mapInnerContainer {
   width: 95%;
   height: 95%;
+}
+
+.toggleContainer {
+  position: absolute;
+  z-index: 10;
 }

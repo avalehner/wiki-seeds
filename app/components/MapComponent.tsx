@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { Article, SetSelectedArticleFn } from "../src/interfaces";
 import { getDistance } from "geolib";
 import { MAX_DISTANCE_METERS_TO_SAVE } from "../src/constants";
+import styles from "./MapComponent.module.css";
 
 interface Location {
   lat: number;
@@ -70,7 +71,7 @@ const DynamicMap = dynamic(
         : defaultPosition;
 
       return (
-        <div style={{ height: "100vh", width: "100%" }}>
+        <div className={styles.mapContainer}>
           <MapContainer
             center={position}
             zoom={13}

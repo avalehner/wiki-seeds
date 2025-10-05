@@ -18,17 +18,20 @@ interface MapPageProps {
 export default function MapPage(props: MapPageProps) {
   return (
     <div className={styles.mapPageOuterContainer}>
-      <PageToggle
-        goToFlowerDex={props.goToFlowerDex}
-        goToMap={() => {}}
-        currentPage={Page.MAP_VIEW}
-      />
+      <div className={styles.mapTitleContainer}></div>
       <div className={styles.mapContainer}>
         <div className={styles.mapInnerContainer}>
           <MapComponent
             currentLocation={props.currentLocation}
             nearbyArticles={props.nearbyArticles}
             setSelectedArticle={props.setSelectedArticle}
+          />
+        </div>
+        <div className={styles.toggleContainer}>
+          <PageToggle
+            goToFlowerDex={props.goToFlowerDex}
+            goToMap={() => {}}
+            currentPage={Page.MAP_VIEW}
           />
         </div>
       </div>
