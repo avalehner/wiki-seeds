@@ -1,0 +1,11 @@
+.pageToggleContainer {
+  width: 230px;
+  background-color: var(--foreground);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 100vh;
+}
+
+.buttonContainer {
+  padding: 5px;
+}

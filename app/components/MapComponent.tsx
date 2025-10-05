@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { Article, SetSelectedArticleFn } from "../src/interfaces";
 import { getDistance } from "geolib";
 import { MAX_DISTANCE_METERS_TO_SAVE } from "../src/constants";
-import styles from "./MapComponent.module.css";
+import styles from "./../styles/MapComponent.module.css";
 
 interface Location {
   lat: number;

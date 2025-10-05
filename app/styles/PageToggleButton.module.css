@@ -1,0 +1,21 @@
+.toggleContainer {
+  color: var(--background);
+  width: 100%;
+  border-radius: 100vh;
+}
+
+.toggleContainer.selected {
+  background-color: var(--accent);
+  color: var(--foreground);
+}
+
+.toggleButton {
+  width: 100%;
+  height: 100%;
+  padding: 3px 15px;
+}
+
+.toggleButtonImage {
+  width: 30px;
+  height: unset;
+}
