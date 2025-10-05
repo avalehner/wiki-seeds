@@ -4,6 +4,8 @@ import {
   SetSelectedArticleFn,
 } from "../src/interfaces";
 import ToWikipediaPageButton from "./ToWikipediaPageButton";
+import styles from "./../styles/SeedSpawn.module.css";
+
 
 export interface SeedSpawnProps {
   article: Article;
@@ -13,8 +15,8 @@ export interface SeedSpawnProps {
 
 export default function SeedSpawn(props: SeedSpawnProps) {
   return (
-    <div>
-      {props.article.title}
+    <div className={styles.seedSpawnOuterContainer}>
+      <div className={styles.seedSpawnTitleContainer}>{props.article.title}</div>
       <button onClick={() => props.setSelectedArticle(null)}>
         back to map
       </button>

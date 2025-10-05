@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@next/font": "^14.2.15",
     "geolib": "^3.3.4",
     "leaflet": "^1.9.4",
     "next": "15.5.4",
