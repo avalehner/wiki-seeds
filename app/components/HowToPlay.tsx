@@ -21,10 +21,10 @@ export default function HowToPlay(props: HowToPlayProps) {
             />
           </div>
       <div className={styles.instructionsContainer}>
-          <p>WikiGarden is a location-based game allows you to explore nearby Wikipedia articles.</p>
+          <p>WikiGarden is a location-based game that allows you to explore nearby Wikipedia articles.</p>
           <p>On the map you will see colored dots all representing a different Wikipedia article.</p>
           <p>Each Wikipedia article has a 'seed' associated with it that you can collect and plant in your Garden.</p>
-          <p>To collect a 'seed' get within 100m of the article and click 'collect seed'.</p>
+          <p>To collect a 'seed' physically get within 100m of the article location and click 'collect seed'.</p>
           <p>Once your seed spawns, you will be able to add it to your garden and watch it grow!</p>
       </div>
 
