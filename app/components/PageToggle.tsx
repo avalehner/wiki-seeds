@@ -5,7 +5,7 @@ import PageToggleButton from "./PageToggleButton";
 interface PageToggleProps {
   currentPage: Page;
   goToMap: () => void;
-  goToFlowerDex: () => void;
+  goToGarden: () => void;
 }
 
 export default function PageToggle(props: PageToggleProps) {
@@ -21,9 +21,9 @@ export default function PageToggle(props: PageToggleProps) {
       </div>
       <div className={styles.buttonContainer}>
         <PageToggleButton
-          text="Flowerdex"
-          selected={props.currentPage === Page.FLOWER_DEX}
-          callback={props.goToFlowerDex}
+          text="Garden"
+          selected={props.currentPage === Page.GARDEN}
+          callback={props.goToGarden}
           baseImageName="flowers"
         />
       </div>

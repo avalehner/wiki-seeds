@@ -6,7 +6,8 @@ import { Article, Location, Page, SavedArticle } from "./src/interfaces";
 import SeedSpawn from "./components/SeedSpawn";
 import MapPage from "./components/MapPage";
 import DetailedView from "./components/DetailedView";
-import Flowerdex from "./components/Flowerdex";
+import Garden from "./components/Garden";
+import HowToPlay from "./components/HowToPlay";
 
 export default function Home() {
   const [nearbyArticles, setNearbyArticles] = useState<Article[]>([]);
@@ -95,10 +96,15 @@ export default function Home() {
     setCurrentPage(Page.MAP_VIEW);
   };
 
-  const goToFlowerDex = () => {
+  const goToGarden = () => {
     setSelectedArticle(null);
-    setCurrentPage(Page.FLOWER_DEX);
+    setCurrentPage(Page.GARDEN);
   };
+
+  const goToHowToPlay = () => {
+    setSelectedArticle(null); 
+    setCurrentPage(Page.HOW_TO_PLAY)
+  }
 
   return selectedArticle && currentPage === Page.SEED_SPAWN ? (
     <SeedSpawn
@@ -111,17 +117,23 @@ export default function Home() {
       currentLocation={currentLocation}
       nearbyArticles={nearbyArticles}
       setSelectedArticle={setSelectedArticleCallback}
-      goToFlowerDex={goToFlowerDex}
+      goToGarden={goToGarden}
+      goToHowToPlay={goToHowToPlay}
     />
   ) : currentPage === Page.DETAILED_VIEW && selectedSavedArticle ? (
     <DetailedView
       savedArticle={selectedSavedArticle}
-      goToFlowerDex={goToFlowerDex}
+      goToGarden={goToGarden}
     />
-  ) : currentPage === Page.FLOWER_DEX ? (
-    <Flowerdex
+  ) : currentPage === Page.GARDEN ? (
+    <Garden
       savedArticles={savedArticles}
       goToArticle={goToArticle}
+      goToMap={goToMap}
+    />
+  ) : currentPage === Page.HOW_TO_PLAY ? (
+    <HowToPlay 
+      goToGarden={goToGarden}
       goToMap={goToMap}
     />
   ) : (

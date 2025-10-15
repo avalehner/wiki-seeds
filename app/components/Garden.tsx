@@ -1,6 +1,6 @@
 import { Article, Page, SavedArticle } from "../src/interfaces";
 import PageToggle from "./PageToggle";
-import styles from "./../styles/FlowerDex.module.css";
+import styles from "./../styles/Garden.module.css";
 import {
   articleToThemeColor,
   getFlowerImageFromArticle,
@@ -8,16 +8,16 @@ import {
 } from "../src/util";
 import Image from "next/image";
 
-interface FlowerdexProps {
+interface GardenProps {
   savedArticles: SavedArticle[];
   goToArticle: (article: Article) => void;
   goToMap: () => void;
 }
 
-export default function Flowerdex(props: FlowerdexProps) {
+export default function Garden(props: GardenProps) {
   return (
-    <div className={styles.flowerDexOuterContainer}>
-      <div className={styles.flowerDexGrid}>
+    <div className={styles.gardenOuterContainer}>
+      <div className={styles.gardenGrid}>
         {props.savedArticles.map((savedArticle) => {
           const backgroundColor = articleToThemeColor(
             savedArticle.article
@@ -50,9 +50,9 @@ export default function Flowerdex(props: FlowerdexProps) {
       </div>
       <div className={styles.toggleContainer}>
         <PageToggle
-          currentPage={Page.FLOWER_DEX}
+          currentPage={Page.GARDEN}
           goToMap={props.goToMap}
-          goToFlowerDex={() => {}}
+          goToGarden={() => {}}
         />
       </div>
     </div>

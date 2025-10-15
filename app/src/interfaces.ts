@@ -45,5 +45,6 @@ export enum Page {
   MAP_VIEW,
   SEED_SPAWN,
   DETAILED_VIEW,
-  FLOWER_DEX,
+  GARDEN,
+  HOW_TO_PLAY
 }

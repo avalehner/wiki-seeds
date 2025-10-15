@@ -12,7 +12,7 @@ import Image from "next/image";
 
 interface DetailedViewProps {
   savedArticle: SavedArticle;
-  goToFlowerDex: () => void;
+  goToGarden: () => void;
 }
 
 export default function DetailedView(props: DetailedViewProps) {
@@ -87,7 +87,7 @@ export default function DetailedView(props: DetailedViewProps) {
           </div>
         </div>
         <div className={styles.closeBtnContainer}>
-          <button onClick={props.goToFlowerDex}>
+          <button onClick={props.goToGarden}>
             <Image
               src="/images/close-button.svg"
               alt="Close"

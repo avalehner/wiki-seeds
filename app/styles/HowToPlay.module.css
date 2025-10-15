@@ -1,0 +1,32 @@
+.howToPlayContainer {
+}
+
+.title {
+  text-align: center; 
+  margin: 1.5em 0 0.5em 0; 
+}
+
+.logoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.instructionsContainer {
+  margin: 1em 2em; 
+}
+
+.instructionsContainer p {
+  padding: 0.5em 0; 
+  font-size: 1.1em;
+}
+
+.toggleContainer {
+  position: absolute;
+  z-index: 1000;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: auto;
+  margin-bottom: 20px;
+}

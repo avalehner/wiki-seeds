@@ -13,7 +13,8 @@ interface MapPageProps {
   currentLocation: Location | null;
   nearbyArticles: Article[];
   setSelectedArticle: SetSelectedArticleFn;
-  goToFlowerDex: () => void;
+  goToGarden: () => void;
+  goToHowToPlay: () => void; 
 }
 
 export default function MapPage(props: MapPageProps) {
@@ -30,6 +31,7 @@ export default function MapPage(props: MapPageProps) {
               height="25"
             />
           </div>
+          <button className={styles.howToPlayBtn} onClick={props.goToHowToPlay}>How to play</button>
         </div>
       </div>
       <div className={styles.mapOuterContainer}>
@@ -43,7 +45,7 @@ export default function MapPage(props: MapPageProps) {
       </div>
       <div className={styles.toggleContainer}>
         <PageToggle
-          goToFlowerDex={props.goToFlowerDex}
+          goToGarden={props.goToGarden}
           goToMap={() => {}}
           currentPage={Page.MAP_VIEW}
         />
